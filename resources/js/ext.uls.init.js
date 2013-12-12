@@ -16,7 +16,42 @@
  * @licence GNU General Public Licence 2.0 or later
  * @licence MIT License
  */
-
+ 
+ //Niharika added this
+function ModifySidebar( action, section, name ) {
+		try {
+                if( section == 'languages') 
+                                var target = 'p-lang';
+ 
+                if ( action == 'add' ) {
+                        var node = document.getElementById( target ).getElementsByTagName( 'div' )[0].getElementsByTagName( 'ul' )[0];
+                        var aNode = document.createElement( 'a' );
+                        var liNode = document.createElement( 'li' );
+                        aNode.appendChild( document.createTextNode( name ) );
+                        aNode.setAttribute( 'href', '#' );
+						aNode.setAttribute( 'class', 'uls-trigger autonym');
+                        liNode.appendChild( aNode );
+						liNode.setAttribute( 'class', 'active');
+						liNode.setAttribute( 'id', 'pt-uls');
+                        node.appendChild( liNode );
+                }
+ 
+			} 
+		catch( e ) {return;}
+		
+		//$(".interlanguage-link interwiki-hi").hide();
+	}
+ 
+function CustomizeModificationsOfSidebar() 
+{
+			ModifySidebar( 'add', 'languages', 'More languages' );
+			$(".interlanguage-link").hide();
+			$(".interlwiki-en").show();
+			$(".interlwiki-ho").show();
+			$(".interlwiki-hi").show();
+}
+ 
+		
 ( function ( $, mw, undefined ) {
 	'use strict';
 
@@ -262,5 +297,10 @@
 
 	$( document ).ready( function () {
 		mw.uls.init();
+		CustomizeModificationsOfSidebar();
+		
 	} );
 }( jQuery, mediaWiki ) );
+
+
+	

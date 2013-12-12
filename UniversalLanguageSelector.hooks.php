@@ -60,7 +60,10 @@ class UniversalLanguageSelectorHooks {
 
 		// If the extension is enabled, basic features (API, language data) available.
 		$out->addModules( 'ext.uls.init' );
-
+		
+		//Niharika added this
+		//$out->addModules('ext.uls.compactlinks');
+		
 		if ( is_string( $wgULSGeoService ) ) {
 			$out->addModules( 'ext.uls.geoclient' );
 		}
@@ -83,7 +86,7 @@ class UniversalLanguageSelectorHooks {
 	public static function addTestModules( array &$testModules, ResourceLoader &$resourceLoader ) {
 		$testModules['qunit']['ext.uls.tests'] = array(
 			'scripts' => array( 'tests/qunit/ext.uls.tests.js' ),
-			'dependencies' => array( 'ext.uls.init', 'ext.uls.interface' ),
+			'dependencies' => array( 'ext.uls.init', 'ext.uls.interface','ext.uls.compactlinks' ),
 			'localBasePath' => __DIR__,
 			'remoteExtPath' => 'UniversalLanguageSelector',
 		);
