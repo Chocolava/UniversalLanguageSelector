@@ -18,7 +18,8 @@
  */
  
  //Niharika added this
-function ModifySidebar( action, section, name ) {
+function ModifySidebar( action, section, name ) 
+{
 		try {
                 if( section == 'languages') 
                                 var target = 'p-lang';
@@ -38,17 +39,49 @@ function ModifySidebar( action, section, name ) {
  
 			} 
 		catch( e ) {return;}
-		
-		//$(".interlanguage-link interwiki-hi").hide();
-	}
+}
+
+function AddLanguage( name ) 
+{               var target = 'p-lang';
+				var node = document.getElementById( target ).getElementsByTagName( 'div' )[0].getElementsByTagName( 'ul' )[0];
+                var aNode = document.createElement( 'a' );
+                var liNode = document.createElement( 'li' );
+                aNode.appendChild( document.createTextNode( name ) );
+                aNode.setAttribute( 'href', '#' );
+				// aNode.setAttribute( 'class', 'interlanguage-link');
+                liNode.appendChild( aNode );
+				liNode.setAttribute( 'class', 'active');
+				liNode.setAttribute( 'id', 'pt-uls');
+                node.appendChild( liNode );
+}
  
 function CustomizeModificationsOfSidebar() 
-{
+{			
+			var langName = mw.uls.getBrowserLanguage();
+			AddLanguage( mw.uls.getCountryCode() );
+			AddLanguage( langName );
+			//var commLangs = mw.uls.getFrequentLanguageList( mw.uls.getCountryCode() );
+			//----Not working!---AddLanguage( $uls.data.getAutonym('en') );
 			ModifySidebar( 'add', 'languages', 'More languages' );
-			$(".interlanguage-link").hide();
-			$(".interlwiki-en").show();
-			$(".interlwiki-ho").show();
-			$(".interlwiki-hi").show();
+			// $(".interlwiki-en").show();
+			// $(".interlwiki-ho").show();
+			// $(".interlwiki-hi").show();
+			// $(".interlanguage-link").hide();
+	
+			//var langarray= document.getElementByClassName('interlanguage-link');
+			//$('.interlanguage-link').hide();
+			
+			var elements = document.getElementsByClassName('interlanguage-link');
+			
+			//document.getElementsByClassName('interlanguage-link').style.display ='none'; 
+
+			for (var i = 0; i < elements.length; i++)
+				elements[i].style.display= 'none';
+				
+			//$('.active').hide();
+			//var x = $.uls.data.getLanguagesByScriptGroupInRegion;
+
+			
 }
  
 		
